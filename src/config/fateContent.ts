@@ -10,7 +10,7 @@ export type FateCardConfig = {
   palette: "rose" | "blue" | "amber" | "mint" | "violet";
   symbol: string;
   description: string;
-  verdicts: string[];
+  verdict: string;
 };
 
 export type LoveLetterConfig = {
@@ -33,11 +33,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "rose",
     symbol: "letter",
     description: "一封没寄出的信，今天终于知道该写给谁。",
-    verdicts: [
-      "勇敢一点，宇宙会为你鼓掌。",
-      "你不是没有机会，只是少了一次开口。",
-      "喜欢是一场小型起义，今晚适合举旗。",
-    ],
+    verdict: "勇敢一点，宇宙会为你鼓掌。",
   },
   {
     id: "takeoff",
@@ -49,11 +45,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "blue",
     symbol: "rocket",
     description: "今夜风向很好，适合大胆一点。",
-    verdicts: [
-      "别问，问就是起飞。",
-      "宇宙给你开了一条缝，但你得自己发消息。",
-      "今晚的心动不讲武德，只讲推力。",
-    ],
+    verdict: "别问，问就是起飞。",
   },
   {
     id: "blessing",
@@ -65,11 +57,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "mint",
     symbol: "sparkles",
     description: "把祝福送出去，也把自由留给自己。",
-    verdicts: [
-      "你祝他们长久，也祝自己快乐。",
-      "今日宜大度，忌刷朋友圈刷到破防。",
-      "他们有他们的甜，你有你的风。",
-    ],
+    verdict: "今日宜大度，忌刷朋友圈刷到破防。",
   },
   {
     id: "food-same",
@@ -81,11 +69,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "amber",
     symbol: "cake",
     description: "先喂饱自己，爱情才不敢饿着你。",
-    verdicts: [
-      "今晚适合吃点热的，别拿冷暴力当夜宵。",
-      "你要等的人也许会迟到，但外卖不会。",
-      "命运说，先点你最想吃的。",
-    ],
+    verdict: "命运说，先点你最想吃的。",
   },
   {
     id: "food-different",
@@ -97,11 +81,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "amber",
     symbol: "ramen",
     description: "尝点不熟悉的味道，也许会撞见新的自己。",
-    verdicts: [
-      "今天别只吃熟悉的苦，换一道菜。",
-      "随机菜单比随机爱情靠谱一点点。",
-      "胃口打开了，人生也会露出一条小路。",
-    ],
+    verdict: "随机菜单比随机爱情靠谱一点点。",
   },
   {
     id: "dream",
@@ -113,11 +93,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "blue",
     symbol: "moon",
     description: "睡前把遗憾折起来，交给月亮暂存。",
-    verdicts: [
-      "好好睡吧，梦里有你想要的答案。",
-      "今晚月亮替你挡掉一点孤单。",
-      "别熬太晚，命运也需要加载。",
-    ],
+    verdict: "今晚月亮替你挡掉一点孤单。",
   },
   {
     id: "study",
@@ -129,11 +105,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "mint",
     symbol: "book",
     description: "知识不一定让人脱单，但会让你更难被糊弄。",
-    verdicts: [
-      "今天少想 TA，多背两个知识点。",
-      "恋爱可以晚点，绩点和简历不会等你。",
-      "你不是没人爱，你是在升级版本。",
-    ],
+    verdict: "恋爱可以晚点，绩点和简历不会等你。",
   },
   {
     id: "sports",
@@ -145,11 +117,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "mint",
     symbol: "dumbbell",
     description: "让心跳先为自己加速一次。",
-    verdicts: [
-      "跑起来，别让情绪追上你。",
-      "出汗比内耗更有性价比。",
-      "今天宜拉伸，忌反复点开聊天框。",
-    ],
+    verdict: "出汗比内耗更有性价比。",
   },
   {
     id: "movie",
@@ -161,11 +129,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "violet",
     symbol: "film",
     description: "一个人坐在好位置，也算是浪漫。",
-    verdicts: [
-      "今晚你是主角，不是路过的观众。",
-      "别急着等彩蛋，正片已经开始。",
-      "让屏幕亮一会儿，也让心安静一会儿。",
-    ],
+    verdict: "别急着等彩蛋，正片已经开始。",
   },
   {
     id: "makeup",
@@ -177,11 +141,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "rose",
     symbol: "wand",
     description: "今晚适合把自己打扮成命运也配不上的样子。",
-    verdicts: [
-      "你不是在化妆，你是在给世界上色。",
-      "今日宜闪耀，忌内耗。",
-      "镜子说：这个人值得被认真看见。",
-    ],
+    verdict: "今日宜闪耀，忌内耗。",
   },
   {
     id: "game",
@@ -193,11 +153,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "violet",
     symbol: "gamepad",
     description: "输了可以重开，人生偶尔也可以。",
-    verdicts: [
-      "别挂机，今天的你有隐藏任务。",
-      "匹配失败不代表账号有问题。",
-      "先赢一局游戏，再放过今晚的自己。",
-    ],
+    verdict: "先赢一局游戏，再放过今晚的自己。",
   },
   {
     id: "wine",
@@ -209,11 +165,7 @@ export const fateCards: FateCardConfig[] = [
     palette: "amber",
     symbol: "wine",
     description: "别把心事全倒进杯子，给明天留一点清醒。",
-    verdicts: [
-      "可以微醺，不要借酒给过去续杯。",
-      "今晚适合小酌，忌给前任发长文。",
-      "把杯子举起来，也把自己放下来。",
-    ],
+    verdict: "今晚适合小酌，忌给前任发长文。",
   },
 ];
 

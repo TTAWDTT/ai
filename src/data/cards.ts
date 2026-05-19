@@ -10,5 +10,5 @@ export type FateCard = {
   palette: "rose" | "blue" | "amber" | "mint" | "violet";
   symbol: string;
   description: string;
-  verdicts: string[];
+  verdict: string;
 };

@@ -37,7 +37,6 @@ export function drawFate(input: DrawInput): DrawResult {
   const baseSeed = `${input.name}|${input.birthday}|${input.gender}|${todayCode}`;
   const pool = weightedCards(input.gender);
   const card = pickSeeded(pool, `${baseSeed}|card`);
-  const verdict = pickSeeded(card.verdicts, `${baseSeed}|${card.id}|verdict`);
   const song = pickSeeded(songs, `${baseSeed}|song`);
   const background = pickSeeded(backgrounds, `${baseSeed}|background`);
   const preferredLetters = loveLetters.filter((letter) =>
@@ -50,7 +49,7 @@ export function drawFate(input: DrawInput): DrawResult {
 
   return {
     card,
-    verdict,
+    verdict: card.verdict,
     song,
     background,
     letter,
