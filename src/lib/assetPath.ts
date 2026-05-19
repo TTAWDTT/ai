@@ -1,0 +1,9 @@
+export function assetPath(src: string): string {
+  if (/^(https?:)?\/\//.test(src) || src.startsWith("data:")) {
+    return src;
+  }
+
+  const base = import.meta.env.BASE_URL || "/";
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+  return `${normalizedBase}${src.replace(/^\/+/, "")}`;
+}
