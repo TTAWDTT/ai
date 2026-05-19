@@ -47,17 +47,34 @@ export function AudioPlayer({ song, autoPlay = false, playSignal = 0 }: AudioPla
       return;
     }
 
+    let cancelled = false;
+    const retryDelays = [0, 800, 2200];
+    const timers: number[] = [];
+
     const attemptAutoplay = async () => {
       try {
         audio.volume = 0.9;
         await audio.play();
-        setIsPlaying(true);
+        if (!cancelled) {
+          setIsPlaying(true);
+        }
       } catch {
-        setIsPlaying(false);
+        if (!cancelled) {
+          setIsPlaying(false);
+        }
       }
     };
 
-    void attemptAutoplay();
+    retryDelays.forEach((delay) => {
+      timers.push(window.setTimeout(() => {
+        void attemptAutoplay();
+      }, delay));
+    });
+
+    return () => {
+      cancelled = true;
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
   }, [isEnabled, playSignal, song.src]);
 
   async function togglePlay() {
@@ -81,7 +98,7 @@ export function AudioPlayer({ song, autoPlay = false, playSignal = 0 }: AudioPla
 
   return (
     <div className="audio-shell">
-      <audio ref={audioRef} src={assetPath(song.src)} preload="metadata" />
+      <audio ref={audioRef} src={assetPath(song.src)} preload="auto" playsInline />
       <button
         className={`audio-toggle ${isPlaying ? "audio-toggle--playing" : ""}`}
         type="button"
@@ -89,6 +106,7 @@ export function AudioPlayer({ song, autoPlay = false, playSignal = 0 }: AudioPla
         aria-label={isPlaying ? "关闭背景音乐" : "播放背景音乐"}
       >
         {isPlaying ? <Pause size={18} aria-hidden="true" /> : <Play size={18} aria-hidden="true" />}
+        {isPlaying ? <span className="audio-toggle__pulse" aria-hidden="true" /> : null}
       </button>
     </div>
   );

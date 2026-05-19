@@ -22,7 +22,10 @@ export default function App() {
   const [appStage, setAppStage] = useState<AppStage>("form");
   const [resultStage, setResultStage] = useState<ResultStage>("card");
   const [result, setResult] = useState<DrawResult | null>(null);
-  const [activeSong] = useState(() => songs[new Date().getDate() % songs.length]);
+  const [activeSong] = useState(() => {
+    const seed = new Date().getDate() + new Date().getMonth();
+    return songs[seed % songs.length];
+  });
   const [playSignal, setPlaySignal] = useState(0);
 
   const currentBackground = result?.background ?? getInitialBackground();
@@ -30,8 +33,8 @@ export default function App() {
 
   useEffect(() => {
     const resumeMusic = () => setPlaySignal((value) => value + 1);
-    window.addEventListener("pointerdown", resumeMusic, { once: true });
-    window.addEventListener("touchstart", resumeMusic, { once: true });
+    window.addEventListener("pointerdown", resumeMusic);
+    window.addEventListener("touchstart", resumeMusic);
     return () => {
       window.removeEventListener("pointerdown", resumeMusic);
       window.removeEventListener("touchstart", resumeMusic);
