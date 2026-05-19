@@ -22,10 +22,9 @@ export default function App() {
   const [appStage, setAppStage] = useState<AppStage>("form");
   const [resultStage, setResultStage] = useState<ResultStage>("card");
   const [result, setResult] = useState<DrawResult | null>(null);
-  const [activeSong] = useState(() => {
-    const seed = new Date().getDate() + new Date().getMonth();
-    return songs[seed % songs.length];
-  });
+  const [activeSong] = useState(
+    () => songs[Math.floor(Math.random() * songs.length)],
+  );
   const [playSignal, setPlaySignal] = useState(0);
 
   const currentBackground = result?.background ?? getInitialBackground();
