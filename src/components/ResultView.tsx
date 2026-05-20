@@ -28,6 +28,7 @@ export function ResultView({ result, stage, onStageChange, onCloseLetter }: Resu
             <div className="card-copy">
               <p className="copy-label">命运判词</p>
               <p>“{result.verdict}”</p>
+              <small>{result.card.description}</small>
             </div>
           </article>
 
