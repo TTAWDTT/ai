@@ -361,6 +361,117 @@ button { -webkit-tap-highlight-color: transparent; }
   padding: 48px 24px 32px;
 }
 
+.draw-copy {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 300px);
+  text-align: center;
+}
+
+.draw-copy h2 {
+  margin: 0;
+  color: #4c4050;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.draw-copy p {
+  margin: 0;
+  color: #847784;
+  font-size: 13px;
+}
+
+.tarot-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 250px);
+  height: 250px;
+}
+
+.magic-ring {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border: 1px solid rgba(244, 93, 150, 0.26);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 0 24px rgba(244, 93, 150, 0.12),
+    0 0 26px rgba(244, 93, 150, 0.1);
+  animation: ring-pulse 2.8s ease-in-out infinite;
+}
+
+.tarot-stage--blue .magic-ring {
+  border-color: rgba(118, 172, 238, 0.34);
+  box-shadow:
+    inset 0 0 22px rgba(118, 172, 238, 0.22),
+    0 0 22px rgba(118, 172, 238, 0.2);
+}
+
+.tarot-card {
+  position: relative;
+  width: 128px;
+  height: 188px;
+  animation: card-orbit 2.15s cubic-bezier(0.22, 0.74, 0.27, 1) infinite;
+}
+
+.tarot-border {
+  position: absolute;
+  inset: 9px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 7px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.tarot-border::before,
+.tarot-border::after {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 6px;
+  content: "";
+}
+
+.tarot-border::after {
+  inset: 26px 22px;
+  border-style: dashed;
+}
+
+.tarot-flower {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 44px;
+}
+
+@keyframes ring-pulse {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.72;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes card-orbit {
+  0% {
+    transform: translateY(12px) rotateY(0deg) rotateZ(-1deg);
+  }
+  42% {
+    transform: translateY(-18px) rotateY(180deg) rotateZ(1deg);
+  }
+  78% {
+    transform: translateY(6px) rotateY(360deg) rotateZ(-1deg);
+  }
+  100% {
+    transform: translateY(12px) rotateY(360deg) rotateZ(-1deg);
+  }
+}
+
 .result-view {
   display: grid;
   align-items: center;
