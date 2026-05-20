@@ -192,7 +192,7 @@ button { -webkit-tap-highlight-color: transparent; }
   outline: 0;
   background: rgba(255, 255, 255, 0.8);
   color: #554756;
-  font-size: 14px;
+  font-size: 16px;
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
@@ -283,7 +283,7 @@ button { -webkit-tap-highlight-color: transparent; }
   outline: 0;
   color: #4b404d;
   background: transparent;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 800;
 }
 
@@ -362,33 +362,51 @@ button { -webkit-tap-highlight-color: transparent; }
 }
 
 .result-view {
-  padding: 34px 18px 12px;
+  display: grid;
+  align-items: center;
+  padding: 26px 18px 14px;
   animation: screen-enter 560ms cubic-bezier(0.2, 0.78, 0.25, 1);
 }
 
 .result-content {
   position: relative;
-  min-height: 0;
-  padding-top: 8px;
-  padding-bottom: 70px;
+  display: grid;
+  width: 100%;
+  min-height: calc(100svh - 52px);
+  align-content: center;
+  gap: 12px;
 }
 
 .result-view--openLetter .result-content {
+  align-content: start;
+}
+
+.result-view--openLetter .result-stack,
+.result-view--openLetter .action-bar {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(10px) scale(0.985);
 }
 
+.result-stack {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
 .fate-card-display {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: min(100%, 360px);
-  min-height: 438px;
+  width: min(100%, 340px);
+  min-height: min(430px, calc(100svh - 178px));
   margin: 0 auto;
   overflow: hidden;
-  padding: 24px 24px 22px;
+  padding: 20px 20px 18px;
   border: 1px solid rgba(255, 163, 195, 0.4);
   border-radius: 11px;
   background:
@@ -414,16 +432,16 @@ button { -webkit-tap-highlight-color: transparent; }
   margin: 0;
   color: #483c49;
   font-family: Georgia, "Times New Roman", "Songti SC", serif;
-  font-size: 34px;
+  font-size: 31px;
   line-height: 1.2;
 }
 
 .card-illustration {
   display: grid;
-  width: 170px;
-  height: 150px;
+  width: 150px;
+  height: 130px;
   place-items: center;
-  margin: 18px auto 15px;
+  margin: 14px auto 12px;
   color: var(--rose-500);
 }
 
@@ -463,13 +481,12 @@ button { -webkit-tap-highlight-color: transparent; }
 .card-palette-violet .card-badge { background: rgba(243, 235, 255, 0.9); }
 
 .sealed-envelope {
-  position: absolute;
-  right: 0;
-  bottom: -4px;
-  left: 0;
+  position: relative;
+  z-index: 2;
   display: block;
-  width: 100%;
-  height: 106px;
+  width: min(100%, 326px);
+  height: 82px;
+  margin-top: -52px;
   padding: 0;
   border: 0;
   border-radius: 0 0 11px 11px;
@@ -481,7 +498,7 @@ button { -webkit-tap-highlight-color: transparent; }
 
 .envelope-body {
   position: absolute;
-  inset: 26px 0 0;
+  inset: 22px 0 0;
   border-radius: 0 0 11px 11px;
   background: linear-gradient(145deg, rgba(255, 242, 234, 0.96), rgba(255, 211, 191, 0.92));
 }
@@ -498,11 +515,11 @@ button { -webkit-tap-highlight-color: transparent; }
 .envelope-body::after { right: 0; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
 .envelope-flap {
   position: absolute;
-  top: 26px;
+  top: 22px;
   left: 0;
   z-index: 2;
   width: 100%;
-  height: 68px;
+  height: 58px;
   background: linear-gradient(180deg, #ffe9df, #ffd1c2);
   clip-path: polygon(0 0, 50% 68%, 100% 0);
   transform-origin: top;
@@ -513,9 +530,9 @@ button { -webkit-tap-highlight-color: transparent; }
   position: absolute;
   z-index: 4;
   right: 50%;
-  bottom: 25px;
-  width: 36px;
-  height: 36px;
+  bottom: 18px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   background:
     radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.42), transparent 26%),
@@ -526,8 +543,8 @@ button { -webkit-tap-highlight-color: transparent; }
 .envelope-flower {
   position: absolute;
   z-index: 5;
-  right: 36px;
-  bottom: 27px;
+  right: 34px;
+  bottom: 20px;
   color: #ff86b1;
   font-size: 20px;
 }
@@ -535,9 +552,9 @@ button { -webkit-tap-highlight-color: transparent; }
 .letter-paper {
   position: absolute;
   z-index: 10;
-  inset: 116px 22px 108px;
-  overflow: hidden;
-  padding: 38px 26px 26px;
+  inset: 52px 18px 76px;
+  overflow: auto;
+  padding: 38px 24px 26px;
   border: 1px solid rgba(255, 204, 221, 0.66);
   border-radius: 10px;
   background:
@@ -613,14 +630,16 @@ button { -webkit-tap-highlight-color: transparent; }
 }
 
 .action-bar {
-  position: absolute;
-  right: 20px;
-  bottom: 8px;
-  left: 20px;
+  position: relative;
   z-index: 12;
   display: grid;
+  width: min(100%, 326px);
+  margin: 0 auto;
   grid-template-columns: 1fr;
   gap: 12px;
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
 }
 
 @keyframes screen-enter {
@@ -657,23 +676,24 @@ button { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 430px) {
   .app-content { width: 100%; }
   .fate-form, .rejection-view, .draw-view, .result-view { min-height: 100svh; }
-  .letter-paper { inset: 104px 16px 98px; padding: 34px 18px 22px; }
-  .result-view { padding: 28px 14px 10px; }
-  .result-content { padding-bottom: 60px; }
-  .fate-card-display { width: min(100%, 332px); min-height: 408px; padding: 18px 16px 16px; }
+  .letter-paper { inset: 48px 16px 72px; padding: 34px 18px 22px; }
+  .result-view { padding: 22px 14px 12px; }
+  .result-content { min-height: calc(100svh - 34px); gap: 10px; }
+  .fate-card-display { width: min(100%, 320px); min-height: min(400px, calc(100svh - 160px)); padding: 17px 16px 16px; }
   .fate-card-display h2 { font-size: 28px; }
-  .card-illustration { width: 146px; height: 126px; margin: 14px auto 12px; }
+  .card-illustration { width: 138px; height: 116px; margin: 12px auto 10px; }
   .birthday-row { grid-template-columns: 1fr; }
-  .sealed-envelope { bottom: -6px; height: 96px; }
-  .action-bar { bottom: 4px; }
+  .sealed-envelope { width: min(100%, 306px); height: 78px; margin-top: -48px; }
+  .action-bar { width: min(100%, 306px); }
 }
 
 @media (max-height: 760px) {
   .fate-form { padding-top: 48px; }
   .hero-kicker { font-size: 48px; }
-  .result-content { padding-bottom: 58px; }
-  .fate-card-display { min-height: 396px; }
-  .letter-paper { top: 98px; }
+  .result-view { padding-top: 16px; }
+  .fate-card-display { min-height: min(372px, calc(100svh - 150px)); }
+  .card-illustration { height: 102px; margin: 8px auto; }
+  .letter-paper { top: 42px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
